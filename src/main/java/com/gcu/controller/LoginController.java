@@ -18,8 +18,9 @@ import java.util.List;
 @RequestMapping("/login")
 public class LoginController {
 
-    private OrdersBusinessServiceInterface ordersService;
-    public LoginController(OrdersBusinessServiceInterface ordersService, SecurityBusinessService securityService) {
+    private final OrdersBusinessServiceInterface ordersService;
+
+    public LoginController(OrdersBusinessServiceInterface ordersService) {
         this.ordersService = ordersService;
     }
 
@@ -37,19 +38,14 @@ public class LoginController {
             return "login";
         }
 
-        // Call authentication service
         boolean isAuthenticated = SecurityBusinessService.authenticate(loginModel.getUsername(), loginModel.getPassword());
 
         if (isAuthenticated) {
-            // Get orders from the service
             List<OrderModel> orders = ordersService.getOrders();
-
             model.addAttribute("orders", orders);
             model.addAttribute("title", "Order List");
-
             return "orders";
         } else {
-            // Authentication failed, return to login form with error message
             model.addAttribute("title", "Login Form");
             model.addAttribute("error", "Invalid username or password");
             return "login";

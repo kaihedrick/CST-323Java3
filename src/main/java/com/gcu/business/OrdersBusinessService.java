@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.gcu.data.OrdersDataService;
 import com.gcu.data.entity.OrderEntity;
 import com.gcu.model.OrderModel;
 
-
+//@Service
 public class OrdersBusinessService implements OrdersBusinessServiceInterface {
     @Autowired
     private OrdersDataService service;
