@@ -128,18 +128,13 @@
 		</dependency>
 
 		<!-- Logging -->
-		<!-- Logback and SLF4J dependencies -->
+		<!-- Logback dependencies -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-
-		<!-- Logstash Logback encoder (for JSON formatting) -->
+		
+		<!-- Logstash encoder -->
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>

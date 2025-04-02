@@ -22,16 +22,22 @@ public class Tracer extends AbstractMonitoringInterceptor {
     protected Object invokeUnderTrace(MethodInvocation invocation, org.apache.commons.logging.Log commonLog) throws Throwable {
         String name = createInvocationTraceName(invocation);
         long start = System.currentTimeMillis();
-        logger.trace("GCU Method " + name + " execution started at: " + new Date());
+        
+        // Use SLF4J string formatting instead of concatenation
+        logger.trace("GCU Method {} execution started at: {}", name, new Date());
+        
         try {
             return invocation.proceed();
         } finally {
             long end = System.currentTimeMillis();
             long time = end - start;
-            logger.trace("GCU Method " + name + " execution lasted: " + time + " ms");
-            logger.trace("GCU Method " + name + " execution ended at: " + new Date());
+            
+            // Use SLF4J string formatting
+            logger.trace("GCU Method {} execution lasted: {} ms", name, time);
+            logger.trace("GCU Method {} execution ended at: {}", name, new Date());
+            
             if (time > 10) {
-                logger.warn("GCU Method execution longer than 10 ms!");
+                logger.warn("GCU Method {} execution longer than 10 ms!", name);
             }
         }
     }
