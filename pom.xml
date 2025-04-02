@@ -141,13 +141,6 @@
 			<version>7.4</version>
 		</dependency>
 
-		<!-- Logback Loggly Appender -->
-		<dependency>
-			<groupId>org.logback-extensions</groupId>
-			<artifactId>logback-ext-loggly</artifactId>
-			<version>0.1.5</version>
-		</dependency>
-
 	</dependencies>
 
 <!-- Build Plugins -->

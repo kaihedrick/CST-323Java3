@@ -2,28 +2,34 @@
 <configuration>
     <property name="LOGGLY_TOKEN" value="fcb37a7c-eaaa-45a2-a91b-8a76a744ed60"/>
     
-    <!-- Use a proper comment format in XML -->
+    <!-- Console Appender -->
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <!-- HTTP appender for Loggly -->
-    <appender name="LOGGLY" class="ch.qos.logback.core.ConsoleAppender">
+    <!-- Loggly HTTP Appender -->
+    <appender name="Loggly" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"appName":"topic4-3","environment":"production"}</customFields>
         </encoder>
     </appender>
 
-    <!-- Configure loggers -->
+    <!-- AOP Logging Configuration -->
     <logger name="com.gcu" level="TRACE" additivity="false">
         <appender-ref ref="Console" />
-        <appender-ref ref="LOGGLY" />
+        <appender-ref ref="Loggly" />
+    </logger>
+
+    <!-- Spring Framework Logging -->
+    <logger name="org.springframework" level="INFO" additivity="false">
+        <appender-ref ref="Console" />
+        <appender-ref ref="Loggly" />
     </logger>
 
     <root level="INFO">
         <appender-ref ref="Console" />
-        <appender-ref ref="LOGGLY" />
+        <appender-ref ref="Loggly" />
     </root>
 </configuration>
