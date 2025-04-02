@@ -1,4 +1,4 @@
-package com.gcu.util;
+package com.util;
 
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.Advisor;

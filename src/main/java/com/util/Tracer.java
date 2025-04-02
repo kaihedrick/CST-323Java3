@@ -1,4 +1,4 @@
-package com.gcu.util;
+package com.util;
 
 import java.util.Date;
 
