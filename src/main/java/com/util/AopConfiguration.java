@@ -10,28 +10,21 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
 @EnableAspectJAutoProxy
-public class AopConfiguration
-{
-	// Setup Pointcuts to the Controllers, Rest Controllers, Business Services, and Data Services
-	@Pointcut("execution(* com.gcu..controller..*(..)) || execution(* com.gcu..business..*(..)) || execution(* com.gcu..data..*(..))")
-	public void monitor()
-	{
-	}
+public class AopConfiguration {
 
-	// Get an instance of the Tracer that will be used in the Aspect
-	@Bean
-	public Tracer tracer()
-	{
-		return new Tracer(true);
-	}
+    // Define which packages/methods will be intercepted
+    @Pointcut("execution(* com.gcu..controller..*(..)) || execution(* com.gcu..business..*(..)) || execution(* com.gcu..data..*(..))")
+    public void monitor() {}
 
-	// Setup the Aspect with the Tracer and reference to the monitor() Pointcut
-	@Bean
-	public Advisor performanceMonitorAdvisor()
-	{
-		AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-		pointcut.setExpression("com.gcu.util.AopConfiguration.monitor()");
-		return new DefaultPointcutAdvisor(pointcut, tracer());
-	}
+    @Bean
+    public Tracer tracer() {
+        return new Tracer(true);
+    }
+
+    @Bean
+    public Advisor performanceMonitorAdvisor() {
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression("execution(* com.gcu..controller..*(..)) || execution(* com.gcu..business..*(..)) || execution(* com.gcu..data..*(..))");
+        return new DefaultPointcutAdvisor(pointcut, tracer());
+    }
 }
-
