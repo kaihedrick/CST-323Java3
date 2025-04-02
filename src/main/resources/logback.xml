@@ -2,7 +2,7 @@
 <configuration>
 
     <property name="LOGS" value="./logs" />
-    <property name="LOGGLY_TOKEN" value="fcb37a7c-eaaa-45a2-a91b-8a76a744ed60"/>
+    <property name="LOGGLY_TOKEN" value="ad2c711e-12d4-4ffe-8bd8-8d7e0a918c4e"/>
 
     <!-- Console Appender -->
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
