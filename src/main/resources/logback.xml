@@ -1,30 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+    <property name="LOGS" value="./logs" />
     <property name="LOGGLY_TOKEN" value="fcb37a7c-eaaa-45a2-a91b-8a76a744ed60"/>
-    <property name="LOGGLY_HOST" value="logs-01.loggly.com"/>
-    <property name="LOGGLY_PORT" value="514"/>
 
-    <appender name="LOGGLY" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-        <destination>${LOGGLY_HOST}:${LOGGLY_PORT}</destination>
-        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
-            <customFields>{"token":"${LOGGLY_TOKEN}","appname":"topic42","environment":"dev"}</customFields>
-        </encoder>
-    </appender>
-
+    <!-- Console Appender -->
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
-        </encoder>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
+    </appender>
+ 
+    <!-- GCU Console Appender -->
+    <appender name="GcuConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>GCU: %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Pattern>
+        </layout>
     </appender>
 
-    <root level="INFO">
+    <!-- Loggly Appender -->
+    <appender name="LOGGLY" class="org.logback.extensions.loggly.LogglyAppender">
+        <endpointUrl>https://logs-01.loggly.com/inputs/${LOGGLY_TOKEN}/tag/logback</endpointUrl>
+        <pattern>%d{"ISO8601", UTC} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </appender>
+    
+    <!-- Root Logger -->
+    <root level="info">
         <appender-ref ref="Console" />
         <appender-ref ref="LOGGLY" />
     </root>
-
-    <logger name="com.gcu" level="TRACE" additivity="false">
-        <appender-ref ref="Console" />
+ 
+    <!-- GCU Package Logger -->
+    <logger name="com.gcu" level="trace" additivity="false">
+        <appender-ref ref="GcuConsole" />
         <appender-ref ref="LOGGLY" />
     </logger>
 
