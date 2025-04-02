@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOGGLY_TOKEN" value="4158da45-27fd-420b-b190-efc5acd57c90"/>
+    <property name="LOGGLY_TOKEN" value="fcb37a7c-eaaa-45a2-a91b-8a76a744ed60"/>
     <property name="APP_NAME" value="topic42" />
     
     <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
