@@ -1,5 +1,6 @@
 package com.util;
 
+
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.aop.Advisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
@@ -12,7 +13,6 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 public class AopConfiguration {
 
-    // Define which packages/methods will be intercepted
     @Pointcut("execution(* com.gcu..controller..*(..)) || execution(* com.gcu..business..*(..)) || execution(* com.gcu..data..*(..))")
     public void monitor() {}
 

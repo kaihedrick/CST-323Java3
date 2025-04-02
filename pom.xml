@@ -128,22 +128,31 @@
 		</dependency>
 
 		<!-- Logging -->
+		<!-- Logback and SLF4J dependencies -->
 		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.20.0</version>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+
+		<!-- Logstash Logback encoder (for JSON formatting) -->
 		<dependency>
 			<groupId>net.logstash.logback</groupId>
 			<artifactId>logstash-logback-encoder</artifactId>
 			<version>7.4</version>
 		</dependency>
 
+		<!-- Logback Loggly Appender -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-loggly</artifactId>
+			<version>0.1.5</version>
 		</dependency>
-		<!-- ✅ Optional: Loggly Appender for Logback -->
+
 	</dependencies>
 
 <!-- Build Plugins -->
