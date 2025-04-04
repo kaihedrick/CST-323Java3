@@ -41,6 +41,7 @@
     <logger name="com.gcu" level="trace" additivity="false">
         <appender-ref ref="GcuConsole" />
         <appender-ref ref="LOGGLY" />
+        <appender-ref ref="Console" /> <!-- so Heroku drain can pick up console -->
     </logger>
 
 </configuration>
